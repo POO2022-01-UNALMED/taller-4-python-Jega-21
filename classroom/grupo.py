@@ -5,7 +5,7 @@ class Grupo:
 
     grado = "Grado 12"
 
-    def __init__(self, grupo="grupo predeterminado", asignaturas=None, estudiantes=None):
+    def __init__(self, grupo="Grupo predeterminado", asignaturas=None, estudiantes=None):
         self._grupo = grupo
         self._asignaturas = asignaturas
         self.listadoAlumnos = estudiantes
