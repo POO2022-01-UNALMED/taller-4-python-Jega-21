@@ -3,25 +3,24 @@ from classroom.asignatura import Asignatura
 
 class Grupo:
 
-    grado = "Grado 12"
+    grado = None
 
-    def __init__(self, grupo="Grupo predeterminado", asignaturas=None, estudiantes=None):
+    def __init__(self, grupo="grupo predeterminado", asignaturas=None, estudiantes=None):
         self._grupo = grupo
         self._asignaturas = asignaturas
         self.listadoAlumnos = estudiantes
     
     def listadoAsignaturas(self, **kwargs):
-        self._asignaturas = []
+        if self._asignaturas is None:
+            self._asignaturas = []
         for x in kwargs.values():
             self._asignaturas.append(Asignatura(x))
 
-    def agregarAlumno(self, alumno, lista=None):
-        if (lista is None):
-            self.listadoAlumnos = [alumno]
-        else:
-            lista = list(lista)
-            lista.append(alumno)
-            self.listadoAlumnos = lista
+    def agregarAlumno(self, *args):
+        if self.listadoAlumnos is None:
+            self.listadoAlumnos = []
+        for a in args:
+            self.listadoAlumnos.append(a)
 
     @ classmethod
     def asignarNombre(cls, nombre="Grado 10"):
@@ -36,4 +35,4 @@ class Grupo:
         cls.grado = nombre
 
     def __str__(self):
-        return "Grupo de estudiantes: " + self._grupo
+        return f"Grupo de estudiantes: {self._grupo}"
